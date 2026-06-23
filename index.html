@@ -35,33 +35,6 @@
         <source src="recorded.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Floating Audio Control Widget -->
-    <div id="audio-control-widget" class="audio-widget-container">
-        <div class="vinyl-disc-wrapper" id="audio-disc-wrapper">
-            <div class="vinyl-disc" id="audio-disc">
-                <i class="fa-solid fa-compact-disc"></i>
-            </div>
-            <div class="heart-badge"><i class="fa-solid fa-heart"></i></div>
-        </div>
-        <div class="audio-controls-panel">
-            <div class="audio-widget-header">
-                <span class="audio-widget-title">Audio Center</span>
-                <span id="audio-status-badge" class="audio-badge badge-bg">Bg Music</span>
-            </div>
-            <div class="audio-widget-buttons">
-                <!-- Play Voice Note (Pre-recorded) -->
-                <button id="btn-recorded-play" class="audio-btn main-play-btn" title="Play Voice Note">
-                    <span class="btn-icon"><i class="fa-solid fa-play"></i></span>
-                    <span class="btn-text">Voice Message</span>
-                </button>
-                <!-- Toggle Background Music -->
-                <button id="btn-bg-toggle" class="audio-btn sub-play-btn active" title="Play/Pause Background Music">
-                    <span class="btn-icon"><i class="fa-solid fa-music"></i></span>
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- Floating Love Notes -->
     <div class="bg-bubbles">
         <div class="bubble love-note" data-msg="You are my sunshine! ☀️"><i class="fa-solid fa-heart"></i></div>
@@ -130,6 +103,10 @@
                         <!-- Add Your Fav Person Image Here -->
                         <img src="./images/r5.png" alt="Birthday Person">
                     </div>
+                    <!-- Circular Play/Pause Voice Button -->
+                    <button id="btn-recorded-play" class="voice-play-btn" title="Play Voice Message">
+                        <i class="fa-solid fa-play"></i>
+                    </button>
                     <div class="name">
                         <i class="fa-solid fa-heart beat"></i>
                         <span>Daizyy</span>
@@ -326,70 +303,40 @@
         let intervalContent, intervalTitle;
 
         /* ==================================
-           AUTO-PLAY & INTERACTIVE AUDIO LOGIC
+           AUTO-PLAY & INTERACTIVE VOICE NOTE LOGIC
            ================================== */
         const bgAudio = document.getElementById("bday-audio");
         const recAudio = document.getElementById("recorded-audio");
-        const widgetContainer = document.getElementById("audio-control-widget");
-        const btnRecorded = document.getElementById("btn-recorded-play");
-        const btnBg = document.getElementById("btn-bg-toggle");
-        const statusBadge = document.getElementById("audio-status-badge");
-        
-        let bgEnabled = true;
+        const btnVoice = document.getElementById("btn-recorded-play");
 
-        function updateWidgetState() {
-            const isRecordedPlaying = !recAudio.paused && !recAudio.ended;
-            const isBgPlaying = !bgAudio.paused && !bgAudio.ended;
-
-            if (isRecordedPlaying) {
-                widgetContainer.classList.add("playing-recorded");
-                widgetContainer.classList.remove("playing-bg");
-                statusBadge.textContent = "Voice Note";
-                statusBadge.className = "audio-badge badge-recorded";
-                btnRecorded.querySelector(".btn-icon").innerHTML = '<i class="fa-solid fa-pause"></i>';
-                btnRecorded.querySelector(".btn-text").textContent = "Pause Voice";
+        function updateVoiceButtonState() {
+            const isPlaying = !recAudio.paused && !recAudio.ended;
+            if (isPlaying) {
+                btnVoice.classList.add("playing");
+                btnVoice.innerHTML = '<i class="fa-solid fa-pause"></i>';
             } else {
-                widgetContainer.classList.remove("playing-recorded");
-                btnRecorded.querySelector(".btn-icon").innerHTML = '<i class="fa-solid fa-play"></i>';
-                btnRecorded.querySelector(".btn-text").textContent = "Voice Message";
-
-                if (isBgPlaying) {
-                    widgetContainer.classList.add("playing-bg");
-                    statusBadge.textContent = "Bg Music";
-                    statusBadge.className = "audio-badge badge-bg";
-                } else {
-                    widgetContainer.classList.remove("playing-bg");
-                    statusBadge.textContent = bgEnabled ? "Paused" : "Muted";
-                    statusBadge.className = "audio-badge badge-muted";
-                }
-            }
-
-            if (bgEnabled) {
-                btnBg.classList.add("active");
-                btnBg.querySelector(".btn-icon").innerHTML = '<i class="fa-solid fa-music"></i>';
-            } else {
-                btnBg.classList.remove("active");
-                btnBg.querySelector(".btn-icon").innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
+                btnVoice.classList.remove("playing");
+                btnVoice.innerHTML = '<i class="fa-solid fa-play"></i>';
             }
         }
 
-        // Click on background triggers autoplay of bg music
+        // Click on background triggers autoplay of background music
         window.addEventListener('click', function (e) {
-            if (e.target.closest('#audio-control-widget')) return;
-            if (bgAudio.paused && recAudio.paused && bgEnabled) {
+            if (e.target.closest('#btn-recorded-play')) return;
+            if (bgAudio.paused && recAudio.paused) {
                 bgAudio.play().catch(e => console.log("Autoplay prevented"));
             }
         }, { once: true });
 
         window.addEventListener('touchstart', function (e) {
-            if (e.target.closest('#audio-control-widget')) return;
-            if (bgAudio.paused && recAudio.paused && bgEnabled) {
+            if (e.target.closest('#btn-recorded-play')) return;
+            if (bgAudio.paused && recAudio.paused) {
                 bgAudio.play().catch(e => console.log("Autoplay prevented"));
             }
         }, { once: true });
 
         // Voice Message Click
-        btnRecorded.addEventListener("click", function(e) {
+        btnVoice.addEventListener("click", function(e) {
             e.stopPropagation();
             if (recAudio.paused) {
                 bgAudio.pause();
@@ -400,45 +347,24 @@
             } else {
                 recAudio.pause();
             }
-            updateWidgetState();
+            updateVoiceButtonState();
         });
 
-        // Background Music Toggle Click
-        btnBg.addEventListener("click", function(e) {
-            e.stopPropagation();
-            bgEnabled = !bgEnabled;
-            if (bgEnabled) {
-                if (recAudio.paused) {
-                    bgAudio.play().catch(err => console.log("Bg play failed: ", err));
-                }
-            } else {
-                bgAudio.pause();
-            }
-            updateWidgetState();
-        });
-
-        // Sync Audio Events to Widget UI state automatically
+        // Sync Audio Events to Voice Button state and background music
         recAudio.addEventListener("play", function() {
             bgAudio.pause();
-            updateWidgetState();
+            updateVoiceButtonState();
         });
 
         recAudio.addEventListener("pause", function() {
-            if (bgEnabled && recAudio.paused) {
-                bgAudio.play().catch(e => console.log("Bg resume failed: ", e));
-            }
-            updateWidgetState();
+            bgAudio.play().catch(e => console.log("Bg resume failed: ", e));
+            updateVoiceButtonState();
         });
 
         recAudio.addEventListener("ended", function() {
-            if (bgEnabled) {
-                bgAudio.play().catch(e => console.log("Bg resume on ended failed: ", e));
-            }
-            updateWidgetState();
+            bgAudio.play().catch(e => console.log("Bg resume on ended failed: ", e));
+            updateVoiceButtonState();
         });
-
-        bgAudio.addEventListener("play", updateWidgetState);
-        bgAudio.addEventListener("pause", updateWidgetState);
 
         /* ==================================
            STAGGERED TYPING ANIMATION
