@@ -1,786 +1,1743 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="title" content="Happy Birthday Special | Mr Ashly Developer">
-    <title>Happy Birthday Special</title>
-
-    <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Titan+One&family=Poppins:wght@500;700&family=Caveat:wght@700&display=swap"
-        rel="stylesheet">
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
-
-    <!-- jQuery & Confetti JS -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-</head>
-
-<body>
-    <!-- Background Music -->
-    <audio id="bday-audio" loop>
-        <source src="audio/background.mp3" type="audio/mpeg">
-        <source src="music.mp3" type="audio/mpeg">
-    </audio>
-
-    <!-- Pre-recorded Voice / Audio -->
-    <audio id="recorded-audio">
-        <source src="audio/recorded.mp3" type="audio/mpeg">
-        <source src="recorded.mp3" type="audio/mpeg">
-    </audio>
-
-    <!-- Floating Love Notes -->
-    <div class="bg-bubbles">
-        <div class="bubble love-note" data-msg="You are my sunshine! ☀️"><i class="fa-solid fa-heart"></i></div>
-        <div class="bubble love-note" data-msg="Your smile is my favorite! 😍"><i class="fa-solid fa-star"></i></div>
-        <div class="bubble love-note" data-msg="I love you to the moon & back! 🌙"><i class="fa-solid fa-heart"></i>
-        </div>
-        <div class="bubble love-note" data-msg="You make my heart skip a beat! 💓"><i class="fa-solid fa-star"></i>
-        </div>
-    </div>
-
-    <!-- Note Popup Toast -->
-    <div id="toast-note" class="toast">Message</div>
-
-    <div id="wrapper">
-        <div class="flag__birthday">
-            <img src="./images/1.png" alt="" class="flag__left">
-            <img src="./images/1.png" alt="" class="flag__right">
-        </div>
-
-        <div class="content">
-            <!-- Left Side -->
-            <div class="left">
-                <div class="title">
-                    <div class="happy text-row">
-                        <span style="--t: 0.1s;">H</span><span style="--t: 0.2s;">a</span><span
-                            style="--t: 0.3s;">p</span><span style="--t: 0.4s;">p</span><span
-                            style="--t: 0.5s;">y</span>
-                    </div>
-                    <div class="birthday text-row">
-                        <span style="--t: 0.6s;">B</span><span style="--t: 0.7s;">i</span><span
-                            style="--t: 0.8s;">r</span><span style="--t: 0.9s;">t</span><span
-                            style="--t: 1.0s;">h</span><span style="--t: 1.1s;">d</span><span
-                            style="--t: 1.2s;">a</span><span style="--t: 1.3s;">y</span>
-                    </div>
-                    <div class="hat">
-                        <img src="./images/hat.png" alt="">
-                    </div>
-                </div>
-
-                <div class="date__of__birth pop-in-date">
-                    <span></span>
-                </div>
-
-                <div class="btn pop-in-btn">
-                    <button id="btn__letter" class="shimmer-btn">
-                        <span>Click here Daizyy</span>
-                        <i class="fa-solid fa-envelope-open-heart"></i>
-                    </button>
-                </div>
-
-                <!-- Cake, Scratch and Dex Buttons -->
-                <div class="extra-actions pop-in-btn">
-                    <button id="btn__cake" class="icon-btn" title="Blow the Candle"><i
-                            class="fa-solid fa-cake-candles"></i></button>
-                    <button id="btn__scratch" class="icon-btn" title="Surprise Gift"><i
-                            class="fa-solid fa-gift"></i></button>
-                    <button id="btn__dex" class="icon-btn dex-icon-btn" title="Our Memories 🌸"><i
-                            class="fa-solid fa-images"></i></button>
-                    <button id="btn-recorded-play" class="icon-btn voice-icon-btn" title="Play Voice Message">
-                        <i class="fa-solid fa-play"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Right Side -->
-            <div class="right">
-                <div class="box__account slide-up-bottom">
-                    <div class="image float-anim">
-                        <!-- Add Your Fav Person Image Here -->
-                        <img src="./images/r5.png" alt="Birthday Person">
-                    </div>
-                    <div class="name">
-                        <i class="fa-solid fa-heart beat"></i>
-                        <span>Daizyy</span>
-                        <i class="fa-solid fa-heart beat"></i>
-                    </div>
-
-                    <div class="balloon_one swing-right">
-                        <img src="./images/balloon1.png" alt="">
-                    </div>
-                    <div class="balloon_two swing-left">
-                        <img src="./images/balloon2.png" alt="">
-                    </div>
-                </div>
-
-                <div class="cricle scale-in">
-                    <div class="text__cricle">
-                        <span style="--i: 1;">h</span><span style="--i: 2;">a</span><span style="--i: 3;">p</span><span
-                            style="--i: 4;">p</span><span style="--i: 5;">y</span><span style="--i: 6;">-</span>
-                        <span style="--i: 7;">b</span><span style="--i: 8;">i</span><span style="--i: 9;">r</span><span
-                            style="--i: 10;">t</span><span style="--i: 11;">h</span><span style="--i: 12;">d</span><span
-                            style="--i: 13;">a</span><span style="--i: 14;">y</span><span style="--i: 15;">-</span>
-                    </div>
-                    <i class="fa-solid fa-heart center-heart"></i>
-                </div>
-            </div>
-        </div>
-
-        <!-- Main Secret Letter Box -->
-        <div class="box__letter modal-box">
-            <div class="letter__border">
-                <div class="close"><i class="fa-solid fa-xmark"></i></div>
-                <div class="letter">
-                    <div class="title__letter"></div>
-                    <div class="content__letter">
-                        <div class="left">
-                            <img id="heart__letter" src="https://media.giphy.com/media/YKUvclrGYmDKXwtphf/giphy.gif"
-                                alt="">
-                            <img class="heart heart_1" style="--t: 0.2s" width="20" src="./images/heart.png" alt="">
-                            <img class="heart heart_2" style="--t: 0.4s" width="20" src="./images/heart.png" alt="">
-                            <img class="heart heart_3" style="--t: 0.6s" width="20" src="./images/heart.png" alt="">
-                            <img class="heart heart_4" style="--t: 0.8s" width="20" src="./images/heart.png" alt="">
-                        </div>
-                        <div class="right">
-                            <div class="love__img">
-                                <img src="https://media.giphy.com/media/m85llaN7ZkFIHtURiC/giphy.gif" alt=""
-                                    width="150">
-                            </div>
-                            <div class="text__letter">
-                                <p></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 3D Cake Modal -->
-        <div id="cake-modal" class="modal-box">
-            <div class="letter__border cake-card">
-                <div class="close btn-close-cake"><i class="fa-solid fa-xmark"></i></div>
-                <h2 class="title__letter cake-title">Make a Wish! 🎂</h2>
-
-                <!-- Realistic 3D CSS Cake -->
-                <div class="cake-container">
-                    <div class="cake-3d">
-                        <div class="cake-side"></div>
-                        <div class="cake-top">
-                            <div class="frosting"></div>
-                            <div class="candle" id="candle">
-                                <div class="flame" id="flame"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <p class="instruction">Tap the flame to blow it out!</p>
-                <p class="wish-text hidden">May all your wishes come true! ✨</p>
-            </div>
-        </div>
-
-        <!-- Advanced Scratch Card Modal -->
-        <div id="scratch-modal" class="modal-box">
-            <div class="letter__border scratch-card-box">
-                <div class="close btn-close-scratch"><i class="fa-solid fa-xmark"></i></div>
-                <h2 class="title__letter">Your Surprise 🎁</h2>
-
-                <div class="scratch-container" id="scratch-container">
-                    <div class="scratch-secret">
-                        <!-- Custom Gift Message -->
-                        <h3>️My Dadang 💕</h3>
-                        <p>I Love Youuuu!</p>
-                    </div>
-                    <canvas id="scratch-canvas"></canvas>
-                </div>
-                <p class="instruction mt-3 scratch-instruction">Scratch the gold foil to reveal!</p>
-            </div>
-        </div>
-
-        <!-- Developer Credit -->
-        <div id="copy">
-            <p>Developed with ❤️ by <a href="#">Asheeee</a></p>
-        </div>
-
-    </div><!-- end #wrapper -->
-
-    <!-- DEX PHOTO GALLERY MODAL -->
-    <div id="dex-modal" class="modal-box dex-modal-overlay">
-        <!-- Floating background flowers -->
-        <div class="dex-bg-flowers" aria-hidden="true">
-            <span class="dbf" style="--x:5%;--y:8%;--s:2.2rem;--d:0s">🌸</span>
-            <span class="dbf" style="--x:90%;--y:5%;--s:1.8rem;--d:0.8s">🌷</span>
-            <span class="dbf" style="--x:15%;--y:80%;--s:2.5rem;--d:1.2s">🌺</span>
-            <span class="dbf" style="--x:80%;--y:75%;--s:2rem;--d:0.4s">🌼</span>
-            <span class="dbf" style="--x:50%;--y:3%;--s:1.5rem;--d:1.8s">🌻</span>
-            <span class="dbf" style="--x:3%;--y:45%;--s:1.6rem;--d:2.2s">💮</span>
-            <span class="dbf" style="--x:93%;--y:40%;--s:1.9rem;--d:0.6s">🌸</span>
-            <span class="dbf" style="--x:40%;--y:92%;--s:1.7rem;--d:1.5s">🌷</span>
-        </div>
-
-        <div class="dex-modal-border letter__border">
-            <!-- Corner flowers -->
-            <span class="dex-corner-flower tl">🌸</span>
-            <span class="dex-corner-flower tr">🌷</span>
-            <span class="dex-corner-flower bl">🌺</span>
-            <span class="dex-corner-flower br">🌼</span>
-
-            <div class="close" id="dex-close"><i class="fa-solid fa-xmark"></i></div>
-            <div class="dex-modal-title">
-                <span class="dex-title-flower">🌸</span>
-                <span>Our Memories</span>
-                <span class="dex-title-flower" style="animation-delay:0.5s">🌸</span>
-            </div>
-
-            <!-- Flower Bloom Animation Layer -->
-            <div class="flower-bloom-wrapper" id="flower-bloom-wrapper">
-                <div class="flower-stem-container">
-                    <div class="flower-stem" id="flower-stem"></div>
-                    <div class="flower-leaves">
-                        <div class="flower-leaf leaf-left"></div>
-                        <div class="flower-leaf leaf-right"></div>
-                    </div>
-                    <div class="flower-head" id="flower-head">
-                        <div class="flower-petal" style="--pr: 0deg;"></div>
-                        <div class="flower-petal" style="--pr: 45deg;"></div>
-                        <div class="flower-petal" style="--pr: 90deg;"></div>
-                        <div class="flower-petal" style="--pr: 135deg;"></div>
-                        <div class="flower-petal" style="--pr: 180deg;"></div>
-                        <div class="flower-petal" style="--pr: 225deg;"></div>
-                        <div class="flower-petal" style="--pr: 270deg;"></div>
-                        <div class="flower-petal" style="--pr: 315deg;"></div>
-                        <div class="flower-center">💛</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Photo Slideshow -->
-            <div class="dex-slideshow" id="dex-slideshow">
-                <div class="dex-slide-frame">
-                    <div class="dex-photo-wrapper" id="dex-photo-wrapper">
-                        <img id="dex-main-photo" src="./images/1.2.jpg" alt="Memory">
-                        <div class="dex-photo-overlay">
-                            <span id="dex-photo-num">1 / 16</span>
-                        </div>
-                    </div>
-                    <div class="dex-slide-petals" id="dex-slide-petals"></div>
-                </div>
-                <div class="dex-slide-controls">
-                    <button class="dex-nav-btn" id="dex-prev"><i class="fa-solid fa-chevron-left"></i></button>
-                    <div class="dex-dots" id="dex-dots"></div>
-                    <button class="dex-nav-btn" id="dex-next"><i class="fa-solid fa-chevron-right"></i></button>
-                </div>
-                <div class="dex-auto-bar-wrap">
-                    <div class="dex-auto-bar" id="dex-auto-bar"></div>
-                </div>
-                <p class="dex-caption" id="dex-caption">✨ Every moment with you is a flower blooming ✨</p>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        /* ==================================
-           MAIN SETUP & TEXTS
-           ================================== */
-        let datetxt = "1st of June";
-        let datatxtletter = "Dadangg Happy birthday 💖✨ karon kay 18th Birthday na nimo Congratsss Dalaga kana As alway im here for you kahit unsa paman na and alrway remember Love tika permi";
-        let titleLetter = "For My Special One";
-
-        let charArrDate = datetxt.split('');
-        let charArrDateLetter = datatxtletter.split('');
-        let charArrTitle = titleLetter.split('');
-        let currentIndex = 0, currentIndexLetter = 0, currentIndexTitle = 0;
-        let date__of__birth = document.querySelector(".date__of__birth span");
-        let text__letter = document.querySelector(".text__letter p");
-        let intervalContent, intervalTitle;
-
-        /* ==================================
-           AUTO-PLAY & INTERACTIVE VOICE NOTE LOGIC
-           ================================== */
-        const bgAudio = document.getElementById("bday-audio");
-        const recAudio = document.getElementById("recorded-audio");
-        const btnVoice = document.getElementById("btn-recorded-play");
-
-        function updateVoiceButtonState() {
-            const isPlaying = !recAudio.paused && !recAudio.ended;
-            if (isPlaying) {
-                btnVoice.classList.add("playing");
-                btnVoice.innerHTML = '<i class="fa-solid fa-pause"></i>';
-            } else {
-                btnVoice.classList.remove("playing");
-                btnVoice.innerHTML = '<i class="fa-solid fa-play"></i>';
-            }
-        }
-
-        // Click on background triggers autoplay of background music
-        window.addEventListener('click', function (e) {
-            if (e.target.closest('#btn-recorded-play')) return;
-            if (bgAudio.paused && recAudio.paused) {
-                bgAudio.play().catch(e => console.log("Autoplay prevented"));
-            }
-        }, { once: true });
-
-        window.addEventListener('touchstart', function (e) {
-            if (e.target.closest('#btn-recorded-play')) return;
-            if (bgAudio.paused && recAudio.paused) {
-                bgAudio.play().catch(e => console.log("Autoplay prevented"));
-            }
-        }, { once: true });
-
-        // Voice Message Click
-        btnVoice.addEventListener("click", function(e) {
-            e.stopPropagation();
-            if (recAudio.paused) {
-                bgAudio.pause();
-                recAudio.play().catch(err => {
-                    console.log("Playback failed: ", err);
-                    alert("To hear your voice message, please place your recording as 'recorded.mp3' in the 'audio' folder!");
-                });
-            } else {
-                recAudio.pause();
-            }
-            updateVoiceButtonState();
-        });
-
-        // Sync Audio Events to Voice Button state and background music
-        recAudio.addEventListener("play", function() {
-            bgAudio.pause();
-            updateVoiceButtonState();
-        });
-
-        recAudio.addEventListener("pause", function() {
-            bgAudio.play().catch(e => console.log("Bg resume failed: ", e));
-            updateVoiceButtonState();
-        });
-
-        recAudio.addEventListener("ended", function() {
-            bgAudio.play().catch(e => console.log("Bg resume on ended failed: ", e));
-            updateVoiceButtonState();
-        });
-
-        /* ==================================
-           STAGGERED TYPING ANIMATION
-           ================================== */
-        setTimeout(function () {
-            let timeDatetxt = setInterval(function () {
-                if (currentIndex < charArrDate.length) {
-                    date__of__birth.textContent += charArrDate[currentIndex];
-                    currentIndex++;
-                } else {
-                    clearInterval(timeDatetxt);
-                }
-            }, 100);
-        }, 3800);
-
-        /* ==================================
-           MAIN LETTER LOGIC
-           ================================== */
-        $("#btn__letter").on("click", function () {
-            fireConfetti();
-            $(".box__letter").css("display", "flex").hide().fadeIn(400);
-            setTimeout(() => $(".box__letter .letter__border").addClass("active"), 100);
-
-            setTimeout(function () {
-                intervalTitle = setInterval(function () {
-                    if (currentIndexTitle < charArrTitle.length) {
-                        document.querySelector(".title__letter").textContent += charArrTitle[currentIndexTitle];
-                        currentIndexTitle++;
-                    } else {
-                        let icon = document.createElement("i");
-                        icon.className = "fa-solid fa-heart fa-beat";
-                        icon.style.color = "#ff4d6d";
-                        icon.style.marginLeft = "8px";
-                        document.querySelector(".title__letter").appendChild(icon);
-                        clearInterval(intervalTitle);
-                    }
-                }, 100)
-            }, 800)
-
-            setTimeout(function () {
-                document.querySelector("#heart__letter").classList.add("animationOp");
-                document.querySelector(".love__img").classList.add("animationOp");
-                document.querySelectorAll(".heart").forEach((item) => item.classList.add("animation"));
-            }, 1200)
-
-            setTimeout(function () {
-                intervalContent = setInterval(function () {
-                    if (currentIndexLetter < charArrDateLetter.length) {
-                        text__letter.textContent += charArrDateLetter[currentIndexLetter];
-                        currentIndexLetter++;
-                    } else {
-                        clearInterval(intervalContent)
-                    }
-                }, 50)
-            }, 2200)
-        })
-
-        $(".box__letter .close").on("click", function () {
-            clearInterval(intervalContent);
-            document.querySelector(".title__letter").textContent = "";
-            text__letter.textContent = "";
-            currentIndexLetter = 0; currentIndexTitle = 0;
-            document.querySelector("#heart__letter").classList.remove("animationOp");
-            document.querySelector(".love__img").classList.remove("animationOp");
-            document.querySelectorAll(".heart").forEach(item => item.classList.remove("animation"));
-            $(".box__letter .letter__border").removeClass("active");
-            setTimeout(() => $(".box__letter").fadeOut(400), 400);
-        });
-
-        /* ==================================
-           3D CAKE & CINEMATIC LIGHT LOGIC
-           ================================== */
-        $("#btn__cake").on("click", function () {
-            $("#cake-modal").css("display", "flex").hide().fadeIn(400);
-            setTimeout(() => $("#cake-modal .letter__border").addClass("active"), 100);
-            $("#flame").css("display", "block");
-            $(".wish-text").addClass("hidden");
-        });
-
-        $("#flame").on("click touchstart", function (e) {
-            e.preventDefault();
-            $(this).fadeOut(300); // Blow out candle
-
-            // 1. Cinematic Darkness
-            $("#cake-modal").css("background", "#000000"); // Pitch Black
-            $("#cake-modal .letter__border").css({
-                "background": "#0a0a0a",
-                "box-shadow": "none",
-                "border-color": "#111"
-            });
-            $(".cake-3d").css("filter", "brightness(0.1)");
-            $(".instruction, .cake-title").css("opacity", "0");
-
-            // 2. Party Neon Lights after darkness
-            setTimeout(() => {
-                $("#cake-modal").css("background", "radial-gradient(circle, #240046 0%, #000 100%)");
-                $("#cake-modal .letter__border").addClass("party-mode");
-                $(".cake-3d").css("filter", "brightness(1.1) drop-shadow(0 0 15px rgba(255,0,110,0.5))");
-                $(".wish-text").removeClass("hidden").hide().fadeIn();
-                fireConfetti();
-            }, 1500); // Stay dark for 1.5 seconds
-        });
-
-        $(".btn-close-cake").on("click", function () {
-            // Reset Everything on close so normal page is unaffected
-            $("#cake-modal .letter__border").removeClass("active party-mode");
-
-            setTimeout(() => {
-                $("#cake-modal").fadeOut(400);
-                setTimeout(() => {
-                    $("#cake-modal").css("background", "");
-                    $("#cake-modal .letter__border").css({ "background": "", "box-shadow": "", "border-color": "" });
-                    $(".cake-3d").css("filter", "");
-                    $(".instruction, .cake-title").css("opacity", "1");
-                }, 400);
-            }, 100);
-        });
-
-        /* ==================================
-           ADVANCED SCRATCH CARD LOGIC
-           ================================== */
-        let scratchCanvasInit = false;
-        $("#btn__scratch").on("click", function () {
-            $("#scratch-modal").css("display", "flex").hide().fadeIn(400);
-            setTimeout(() => $("#scratch-modal .letter__border").addClass("active"), 100);
-
-            // Reset states
-            $(".scratch-secret").removeClass("pop-gift");
-            $("#scratch-canvas").show().css("opacity", "1");
-            $(".scratch-instruction").text("Scratch the gold foil to reveal your gift!");
-            initScratchCard();
-        });
-
-        $(".btn-close-scratch").on("click", function () {
-            $("#scratch-modal .letter__border").removeClass("active");
-            setTimeout(() => $("#scratch-modal").fadeOut(400), 400);
-        });
-
-        function initScratchCard() {
-            const canvas = document.getElementById("scratch-canvas");
-            const ctx = canvas.getContext("2d");
-            const container = document.getElementById("scratch-container");
-
-            canvas.width = container.offsetWidth;
-            canvas.height = container.offsetHeight;
-
-            // Realistic Gold Foil Background
-            let gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-            gradient.addColorStop(0, "#D4AF37");
-            gradient.addColorStop(0.5, "#FFDF73");
-            gradient.addColorStop(1, "#AA7700");
-            ctx.fillStyle = gradient;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            // Foil Text
-            ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
-            ctx.font = "bold 22px Poppins";
-            ctx.textAlign = "center";
-            ctx.fillText("✨ SCRATCH ME ✨", canvas.width / 2, canvas.height / 2 + 8);
-
-            let isDrawing = false;
-            let isRevealed = false;
-
-            function getBrushPos(e) {
-                let rect = canvas.getBoundingClientRect();
-                let x = (e.clientX || e.touches[0].clientX) - rect.left;
-                let y = (e.clientY || e.touches[0].clientY) - rect.top;
-                return { x, y };
-            }
-
-            function scratch(e) {
-                if (!isDrawing || isRevealed) return;
-                e.preventDefault();
-                let pos = getBrushPos(e);
-                ctx.globalCompositeOperation = "destination-out";
-                ctx.beginPath();
-                ctx.arc(pos.x, pos.y, 25, 0, 2 * Math.PI); // Bigger brush
-                ctx.fill();
-            }
-
-            function checkReveal() {
-                if (isRevealed) return;
-                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                let transparentPixels = 0;
-                for (let i = 3; i < imageData.data.length; i += 4) {
-                    if (imageData.data[i] === 0) transparentPixels++;
-                }
-                const percentage = (transparentPixels / (canvas.width * canvas.height)) * 100;
-
-                // Auto Reveal if 45% is scratched!
-                if (percentage > 45) {
-                    isRevealed = true;
-                    $(canvas).animate({ opacity: 0 }, 500, function () { $(this).hide(); });
-
-                    // Pop the gift out!
-                    setTimeout(() => {
-                        $(".scratch-secret").addClass("pop-gift");
-                        $(".scratch-instruction").text("Yay! You found it! 🎉");
-                        confetti({ particleCount: 100, spread: 60, origin: { y: 0.7 }, zIndex: 1500 });
-                    }, 200);
-                }
-            }
-
-            canvas.addEventListener("mousedown", () => isDrawing = true);
-            canvas.addEventListener("touchstart", () => isDrawing = true);
-            canvas.addEventListener("mouseup", () => { isDrawing = false; checkReveal(); });
-            canvas.addEventListener("touchend", () => { isDrawing = false; checkReveal(); });
-            canvas.addEventListener("mousemove", scratch);
-            canvas.addEventListener("touchmove", scratch);
-        }
-
-        /* ==================================
-           FLOATING LOVE NOTES
-           ================================== */
-        $(".love-note").on("click touchstart", function (e) {
-            e.preventDefault();
-            let msg = $(this).attr("data-msg");
-            let toast = $("#toast-note");
-            toast.text(msg).fadeIn(300);
-            setTimeout(() => toast.fadeOut(500), 3000);
-        });
-
-        /* ==================================
-           DEX PHOTO GALLERY LOGIC
-           ================================== */
-        const DEX_TOTAL = 16;
-        const DEX_PHOTOS = [
-            "1.2.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg",
-            "9.jpg", "10.jpg", "11.jpg", "12.jpg", "13.jpg", "14.jpg", "15.jpg", "16.jpg"
-        ];
-        const DEX_CAPTIONS = [
-            "✨ Every moment with you is a flower blooming ✨",
-            "🌸 You light up every room you walk into 🌸",
-            "💕 A memory I'll treasure forever 💕",
-            "🌷 Sweet like flowers, warm like sunshine 🌷",
-            "🌼 Growing beautiful together 🌼",
-            "💖 My favorite person in every photo 💖",
-            "🌺 Blooming brighter every single day 🌺",
-            "🌻 Happiness looks like you 🌻",
-            "🌸 These moments are my favorites 🌸",
-            "💝 Always in my heart, always in my memories 💝",
-            "🌷 You make everything prettier 🌷",
-            "✨ Grateful for every second with you ✨",
-            "💕 The best memories are made with you 💕",
-            "🌸 You are sunshine on a cloudy day 🌸",
-            "🌺 Forever and always, our garden of memories 🌺",
-            "💖 Dex, you mean the whole world 💖"
-        ];
-
-        let dexCurrentIndex = 0;
-        let dexAutoTimer = null;
-        let dexBarAnim = null;
-        let dexFlowerDone = false;
-
-        // Build dots
-        const dexDotsEl = document.getElementById("dex-dots");
-        for (let i = 0; i < DEX_TOTAL; i++) {
-            let dot = document.createElement("div");
-            dot.className = "dex-dot" + (i === 0 ? " active" : "");
-            dot.addEventListener("click", () => dexGoTo(i));
-            dexDotsEl.appendChild(dot);
-        }
-
-        function dexUpdateSlide(idx, dir = 1) {
-            const photo = document.getElementById("dex-main-photo");
-            const numEl = document.getElementById("dex-photo-num");
-            const capEl = document.getElementById("dex-caption");
-            const wrapper = document.getElementById("dex-photo-wrapper");
-
-            wrapper.classList.remove("slide-in-left", "slide-in-right", "slide-out-left", "slide-out-right");
-            void wrapper.offsetWidth;
-            wrapper.classList.add(dir > 0 ? "slide-in-right" : "slide-in-left");
-
-            photo.src = "./images/" + DEX_PHOTOS[idx];
-            numEl.textContent = (idx + 1) + " / " + DEX_TOTAL;
-            capEl.textContent = DEX_CAPTIONS[idx];
-
-            document.querySelectorAll(".dex-dot").forEach((d, i) => d.classList.toggle("active", i === idx));
-
-            // floating petals
-            spawnPetals();
-        }
-
-        function dexGoTo(idx) {
-            let dir = idx > dexCurrentIndex ? 1 : -1;
-            dexCurrentIndex = (idx + DEX_TOTAL) % DEX_TOTAL;
-            dexUpdateSlide(dexCurrentIndex, dir);
-            dexRestartBar();
-        }
-
-        function dexNext() { dexGoTo((dexCurrentIndex + 1) % DEX_TOTAL); }
-        function dexPrev() { dexGoTo((dexCurrentIndex - 1 + DEX_TOTAL) % DEX_TOTAL); }
-
-        function dexRestartBar() {
-            clearTimeout(dexAutoTimer);
-            const bar = document.getElementById("dex-auto-bar");
-            bar.style.transition = "none";
-            bar.style.width = "0%";
-            void bar.offsetWidth;
-            bar.style.transition = "width 5s linear";
-            bar.style.width = "100%";
-            dexAutoTimer = setTimeout(() => dexNext(), 5000);
-        }
-
-        function spawnPetals() {
-            const container = document.getElementById("dex-slide-petals");
-            container.innerHTML = "";
-            const emojis = ["🌸", "🌷", "🌼", "🌺", "💮", "🌻"];
-            for (let i = 0; i < 8; i++) {
-                let p = document.createElement("span");
-                p.className = "falling-petal";
-                p.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-                p.style.left = (Math.random() * 90 + 5) + "%";
-                p.style.animationDelay = (Math.random() * 1.5) + "s";
-                p.style.fontSize = (Math.random() * 12 + 14) + "px";
-                container.appendChild(p);
-            }
-        }
-
-        document.getElementById("dex-prev").addEventListener("click", dexPrev);
-        document.getElementById("dex-next").addEventListener("click", dexNext);
-
-        // Open Dex modal
-        document.getElementById("btn__dex").addEventListener("click", function () {
-            $("#dex-modal").css("display", "flex").hide().fadeIn(400);
-            setTimeout(() => $("#dex-modal .dex-modal-border").addClass("active"), 100);
-
-            // Start flower animation
-            startFlowerBloom();
-        });
-
-        document.getElementById("dex-close").addEventListener("click", function () {
-            clearTimeout(dexAutoTimer);
-            $("#dex-modal .dex-modal-border").removeClass("active");
-            setTimeout(() => {
-                $("#dex-modal").fadeOut(400);
-                // Reset
-                dexCurrentIndex = 0;
-                dexFlowerDone = false;
-                document.getElementById("dex-slideshow").style.opacity = "0";
-                document.getElementById("dex-slideshow").style.display = "none";
-                document.getElementById("flower-bloom-wrapper").style.display = "flex";
-                resetFlower();
-            }, 400);
-        });
-
-        function resetFlower() {
-            document.getElementById("flower-stem").style.height = "0";
-            document.getElementById("flower-head").style.opacity = "0";
-            document.getElementById("flower-head").style.transform = "scale(0)";
-            document.querySelectorAll(".flower-petal").forEach(p => {
-                p.style.transform = "rotate(var(--pr)) translateY(0) scale(0)";
-                p.style.opacity = "0";
-            });
-            document.querySelectorAll(".flower-leaf").forEach(l => {
-                l.style.opacity = "0"; l.style.transform = "scale(0)";
-            });
-        }
-
-        function startFlowerBloom() {
-            if (dexFlowerDone) return;
-            const stem = document.getElementById("flower-stem");
-            const head = document.getElementById("flower-head");
-            const leaves = document.querySelectorAll(".flower-leaf");
-            const petals = document.querySelectorAll(".flower-petal");
-
-            // Grow stem
-            stem.style.transition = "height 1.2s ease-out";
-            stem.style.height = "140px";
-
-            // Leaves appear mid-stem
-            setTimeout(() => {
-                leaves.forEach(l => {
-                    l.style.transition = "all 0.5s ease";
-                    l.style.opacity = "1";
-                    l.style.transform = "scale(1)";
-                });
-            }, 600);
-
-            // Flower head appears
-            setTimeout(() => {
-                head.style.transition = "all 0.6s cubic-bezier(0.34,1.56,0.64,1)";
-                head.style.opacity = "1";
-                head.style.transform = "scale(1)";
-                petals.forEach((p, i) => {
-                    setTimeout(() => {
-                        p.style.transition = "all 0.4s cubic-bezier(0.34,1.56,0.64,1)";
-                        p.style.transform = "rotate(var(--pr)) translateY(-22px) scale(1)";
-                        p.style.opacity = "1";
-                    }, i * 60);
-                });
-            }, 1300);
-
-            // Show slideshow
-            setTimeout(() => {
-                dexFlowerDone = true;
-                document.getElementById("flower-bloom-wrapper").style.display = "none";
-                const ss = document.getElementById("dex-slideshow");
-                ss.style.display = "flex";
-                void ss.offsetWidth;
-                ss.style.opacity = "1";
-                dexUpdateSlide(0, 1);
-                dexRestartBar();
-                spawnPetals();
-            }, 2500);
-        }
-
-        // Helper Function
-        function fireConfetti() {
-            confetti({
-                particleCount: 200, spread: 90, origin: { y: 0.6 },
-                colors: ['#ff4d6d', '#ff758f', '#fff', '#ffd60a'],
-                disableForReducedMotion: true,
-                zIndex: 2000
-            });
-        }
-    </script>
-</body>
-
-</html>
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Titan+One&family=Poppins:wght@500;700&family=Caveat:wght@700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+    --bg-pink: #fff0f5;
+    --text-dark: #333;
+    --main-pink: #ff477e;
+    --light-pink: #ff85a1;
+    --white: #ffffff;
+    --shadow-pop: 0px 8px 0px #ffb3c6;
+    --shadow-soft: 0 10px 25px rgba(255, 71, 126, 0.2);
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-pink);
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Background Bubbles */
+.bg-bubbles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 133, 161, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
+    animation: floatUp 15s infinite ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.bubble i {
+    font-size: 2rem;
+    color: rgba(255, 71, 126, 0.5);
+    transition: 0.3s;
+}
+
+.bubble:hover i {
+    transform: scale(1.2);
+    color: var(--main-pink);
+}
+
+.bubble:nth-child(1) {
+    width: 300px;
+    height: 300px;
+    left: -50px;
+    top: 80%;
+    animation-duration: 12s;
+}
+
+.bubble:nth-child(2) {
+    width: 200px;
+    height: 200px;
+    right: -20px;
+    top: 60%;
+    animation-duration: 15s;
+}
+
+.bubble:nth-child(3) {
+    width: 150px;
+    height: 150px;
+    left: 40%;
+    top: 90%;
+    animation-duration: 10s;
+}
+
+.bubble:nth-child(4) {
+    width: 180px;
+    height: 180px;
+    right: 30%;
+    top: 85%;
+    animation-duration: 18s;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: translateY(-300px) scale(1.2);
+        opacity: 0.4;
+    }
+
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.8;
+    }
+}
+
+/* Toast Message Style */
+.toast {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--white);
+    color: var(--main-pink);
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-weight: 700;
+    box-shadow: var(--shadow-pop);
+    border: 2px solid var(--main-pink);
+    z-index: 1000;
+    display: none;
+    font-family: 'Caveat', cursive;
+    font-size: 1.5rem;
+}
+
+#wrapper {
+    position: relative;
+    height: 100%;
+    overflow-y: auto;
+    z-index: 1;
+}
+
+/* Flag Animation */
+.flag__birthday {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    transform: translateY(-150px);
+    animation: dropDown 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes dropDown {
+    to {
+        transform: translateY(-10px);
+    }
+}
+
+.flag__left {
+    width: 220px;
+    transform: rotate(-8deg);
+    transform-origin: top left;
+    animation: swing 4s infinite ease-in-out;
+}
+
+.flag__right {
+    width: 220px;
+    transform: rotate(8deg) scaleX(-1);
+    transform-origin: top right;
+    animation: swing 4s infinite ease-in-out reverse;
+}
+
+@keyframes swing {
+
+    0%,
+    100% {
+        transform: rotate(-8deg) scaleX(1);
+    }
+
+    50% {
+        transform: rotate(2deg) scaleX(1);
+    }
+}
+
+/* Layout */
+.content {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    padding-bottom: 80px;
+}
+
+.left,
+.right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+/* Title */
+.title {
+    position: relative;
+    text-align: center;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.text-row {
+    display: flex;
+    flex-wrap: nowrap;
+    font-family: 'Titan One', cursive;
+    font-size: clamp(3rem, 10vw, 5.5rem);
+    letter-spacing: 2px;
+    text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+.happy {
+    color: var(--light-pink);
+}
+
+.birthday {
+    color: var(--main-pink);
+}
+
+.happy span,
+.birthday span {
+    display: inline-block;
+    opacity: 0;
+    transform: scale(0.9) translateY(-30px);
+    animation: smoothDropText 1s var(--t) ease-out forwards;
+}
+
+@keyframes smoothDropText {
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.title .hat {
+    position: absolute;
+    right: -10%;
+    top: -30%;
+    width: clamp(60px, 15vw, 100px);
+    z-index: -1;
+    transform: rotate(25deg);
+    opacity: 0;
+    animation: dropInHat 1s 2s ease-out forwards;
+}
+
+@keyframes dropInHat {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0) rotate(25deg);
+        opacity: 1;
+    }
+}
+
+.title .hat img {
+    width: 100%;
+    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.2));
+}
+
+/* Date Box & Button */
+.pop-in-date {
+    opacity: 0;
+    transform: translateY(-40px);
+    animation: smoothDropElement 1s 2.8s ease-out forwards;
+}
+
+.pop-in-btn {
+    opacity: 0;
+    transform: translateY(-40px);
+    animation: smoothDropElement 1s 4.8s ease-out forwards;
+}
+
+@keyframes smoothDropElement {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.date__of__birth {
+    background: var(--white);
+    color: var(--main-pink);
+    padding: 10px 30px;
+    border-radius: 50px;
+    margin-top: 20px;
+    font-weight: 700;
+    font-size: clamp(1rem, 4vw, 1.3rem);
+    border: 3px solid var(--white);
+    box-shadow: var(--shadow-pop);
+}
+
+.btn {
+    margin-top: 30px;
+}
+
+.shimmer-btn {
+    position: relative;
+    overflow: hidden;
+    background: var(--main-pink);
+    color: var(--white);
+    border: 3px solid var(--white);
+    padding: 15px 35px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: var(--shadow-pop);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s ease;
+}
+
+.shimmer-btn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+    transform: skewX(-20deg);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    100% {
+        left: 200%;
+    }
+}
+
+.shimmer-btn:active {
+    transform: translateY(5px);
+    box-shadow: 0px 3px 0px #ffb3c6;
+}
+
+/* Extra Action Buttons */
+.extra-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    justify-content: center;
+    animation-delay: 5s;
+}
+
+.icon-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--white);
+    color: var(--main-pink);
+    border: 3px solid var(--main-pink);
+    font-size: 1.3rem;
+    cursor: pointer;
+    box-shadow: var(--shadow-pop);
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-btn:hover {
+    transform: translateY(-5px);
+    background: var(--light-pink);
+    color: var(--white);
+}
+
+.icon-btn:active {
+    transform: translateY(3px);
+    box-shadow: 0 3px 0 #ffb3c6;
+}
+
+/* Image Section */
+.box__account {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.slide-up-bottom {
+    opacity: 0;
+    transform: translateY(150px);
+    animation: slideUpFromBottom 1.5s 5.5s ease-out forwards;
+}
+
+@keyframes slideUpFromBottom {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.image {
+    width: clamp(220px, 50vw, 320px);
+    height: clamp(220px, 50vw, 320px);
+    border-radius: 50%;
+    border: 8px solid var(--white);
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+    z-index: 2;
+}
+
+.float-anim {
+    animation: floatBox 4s ease-in-out infinite;
+}
+
+@keyframes floatBox {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+.image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.name {
+    background: var(--white);
+    color: var(--main-pink);
+    font-weight: 700;
+    font-size: clamp(1rem, 4vw, 1.4rem);
+    padding: 10px 35px;
+    border-radius: 50px;
+    box-shadow: var(--shadow-pop);
+    position: relative;
+    top: -20px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 3px solid var(--white);
+}
+
+.beat {
+    animation: heartBeat 1s infinite;
+}
+
+@keyframes heartBeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.3);
+    }
+}
+
+/* Balloons & Circle */
+.balloon_one,
+.balloon_two {
+    position: absolute;
+    width: clamp(55px, 15vw, 85px);
+    z-index: 1;
+}
+
+.balloon_one {
+    top: -20px;
+    left: -30px;
+    transform-origin: bottom center;
+    animation: sway 3s infinite ease-in-out;
+}
+
+.balloon_two {
+    bottom: 50px;
+    right: -40px;
+    transform-origin: bottom left;
+    animation: sway 4s infinite ease-in-out reverse;
+}
+
+.balloon_one img,
+.balloon_two img {
+    width: 100%;
+    filter: drop-shadow(2px 5px 5px rgba(0, 0, 0, 0.15));
+}
+
+@keyframes sway {
+
+    0%,
+    100% {
+        transform: rotate(-5deg);
+    }
+
+    50% {
+        transform: rotate(5deg);
+    }
+}
+
+.cricle {
+    position: absolute;
+    top: 0px;
+    right: -20px;
+    z-index: 4;
+}
+
+.scale-in {
+    opacity: 0;
+    transform: scale(0);
+    animation: scaleUp 1s 6.5s ease-out forwards;
+}
+
+@keyframes scaleUp {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.text__cricle {
+    width: clamp(80px, 20vw, 110px);
+    height: clamp(80px, 20vw, 110px);
+    background: var(--white);
+    border-radius: 50%;
+    box-shadow: var(--shadow-pop);
+    position: relative;
+    border: 3px solid var(--white);
+    animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.text__cricle span {
+    position: absolute;
+    left: 50%;
+    top: 5px;
+    transform-origin: 0 calc(clamp(80px, 20vw, 110px) / 2 - 5px);
+    font-size: clamp(0.5rem, 2vw, 0.75rem);
+    font-weight: 700;
+    color: var(--main-pink);
+    text-transform: uppercase;
+    transform: translateX(-50%) rotate(calc(var(--i) * 24deg));
+}
+
+.center-heart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--main-pink);
+    font-size: clamp(1rem, 4vw, 1.5rem);
+    filter: drop-shadow(0 2px 4px rgba(255, 71, 126, 0.4));
+}
+
+/* Base Modal Styling */
+.modal-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 240, 245, 0.85);
+    backdrop-filter: blur(10px);
+    z-index: 999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.8s ease;
+}
+
+.letter__border {
+    width: 90%;
+    max-width: 650px;
+    background: linear-gradient(135deg, #ffffff, #fff5f8);
+    background-image: radial-gradient(#ffb3c6 1.5px, transparent 1.5px);
+    background-size: 25px 25px;
+    border-radius: 25px;
+    box-shadow: 0 25px 50px rgba(255, 71, 126, 0.2), inset 0 0 20px rgba(255, 255, 255, 0.8);
+    padding: 30px;
+    position: relative;
+    transform: translateY(100px) scale(0.9);
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: 4px solid var(--white);
+}
+
+.letter__border.active {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+.close {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    background: var(--main-pink);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-pop);
+    font-size: 1.2rem;
+    transition: transform 0.2s;
+    border: 3px solid var(--white);
+    z-index: 10;
+}
+
+.close:hover {
+    transform: scale(1.1) rotate(90deg);
+}
+
+/* Main Letter Modal */
+.title__letter {
+    text-align: center;
+    font-family: 'Caveat', cursive;
+    font-size: 3rem;
+    color: var(--main-pink);
+    text-shadow: 2px 2px 0px #fff, 4px 4px 0px #ffe5ec;
+    transition: 0.5s;
+}
+
+.content__letter {
+    display: flex;
+    margin-top: 15px;
+}
+
+.content__letter .left {
+    width: 40%;
+    padding-right: 15px;
+}
+
+.content__letter .right {
+    width: 60%;
+    position: relative;
+}
+
+.text__letter p {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    font-weight: 700;
+    line-height: 1.5;
+    color: #d81b60;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px dashed var(--light-pink);
+    box-shadow: 0 5px 15px rgba(255, 71, 126, 0.05);
+}
+
+.love__img {
+    position: absolute;
+    right: -10px;
+    bottom: -40px;
+    opacity: 0;
+    animation: floatBox 3s ease-in-out infinite;
+}
+
+#heart__letter {
+    width: 100%;
+    border-radius: 15px;
+    opacity: 0;
+    box-shadow: var(--shadow-soft);
+}
+
+.animationOp {
+    animation: fade 1s forwards, floatBox 3s ease-in-out infinite;
+}
+
+@keyframes fade {
+    to {
+        opacity: 1;
+    }
+}
+
+/* ==================================
+   1. REALISTIC CSS 3D CAKE & FLAME
+   ================================== */
+.cake-card {
+    text-align: center;
+    overflow: hidden;
+}
+
+.cake-container {
+    perspective: 1000px;
+    margin: 60px auto 80px auto;
+    width: 220px;
+    height: 120px;
+    position: relative;
+}
+
+.cake-3d {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transform: rotateX(-15deg);
+    /* 3D Tilt */
+    transition: filter 0.8s ease;
+}
+
+.cake-side {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #ff477e, #d81b60);
+    border-radius: 50% / 30px;
+    /* Cylinder bottom */
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+}
+
+.cake-top {
+    position: absolute;
+    top: -40px;
+    width: 100%;
+    height: 80px;
+    background: radial-gradient(circle at center, #ff85a1, #ff477e);
+    border-radius: 50%;
+    border: 5px solid #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.candle {
+    position: absolute;
+    top: -50px;
+    width: 16px;
+    height: 60px;
+    background: repeating-linear-gradient(45deg, #fff, #fff 5px, #ff477e 5px, #ff477e 10px);
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Dancing Realistic Flame */
+.flame {
+    width: 22px;
+    height: 35px;
+    background: radial-gradient(ellipse at bottom, #fff 10%, #ffd60a 40%, #ff9f1c 80%, rgba(255, 0, 0, 0) 100%);
+    position: absolute;
+    top: -38px;
+    left: -3px;
+    border-radius: 50% 50% 20% 20% / 60% 60% 40% 40%;
+    box-shadow: 0 -5px 20px rgba(255, 214, 10, 0.8), 0 0 40px rgba(255, 159, 28, 0.6);
+    cursor: pointer;
+    transform-origin: bottom center;
+    animation: burnFlame 0.8s infinite alternate ease-in-out;
+}
+
+@keyframes burnFlame {
+    0% {
+        transform: scale(1) skewX(2deg);
+        border-radius: 50% 50% 20% 20% / 60% 60% 40% 40%;
+        box-shadow: 0 -5px 20px rgba(255, 214, 10, 0.8), 0 0 30px rgba(255, 159, 28, 0.5);
+    }
+
+    50% {
+        transform: scale(1.1) skewX(-2deg);
+        border-radius: 50% 50% 20% 20% / 55% 65% 35% 45%;
+        box-shadow: 0 -10px 30px rgba(255, 214, 10, 1), 0 0 50px rgba(255, 159, 28, 0.8);
+    }
+
+    100% {
+        transform: scale(0.95) skewX(3deg);
+        border-radius: 50% 50% 20% 20% / 65% 55% 45% 35%;
+        box-shadow: 0 -2px 15px rgba(255, 214, 10, 0.6), 0 0 20px rgba(255, 159, 28, 0.4);
+    }
+}
+
+.instruction {
+    font-family: 'Poppins';
+    color: #666;
+    transition: 0.5s;
+    font-size: 1.1rem;
+}
+
+.wish-text {
+    font-family: 'Dancing Script';
+    font-size: 2.5rem;
+    color: #ff006e;
+    animation: fade 1s;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Cinematic Party Mode Background */
+.party-mode {
+    background: linear-gradient(135deg, #10002b, #3c096c) !important;
+    border-color: #ff006e !important;
+    box-shadow: 0 0 50px #ff006e, inset 0 0 30px #e0aaff !important;
+}
+
+.party-mode .wish-text {
+    color: #fff;
+    text-shadow: 0 0 15px #ff006e, 0 0 30px #ffbe0b;
+}
+
+/* ==================================
+   2. UPGRADED SCRATCH CARD
+   ================================== */
+.scratch-card-box {
+    text-align: center;
+}
+
+.scratch-container {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    height: 160px;
+    margin: 20px auto;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 3px dashed var(--main-pink);
+    box-shadow: var(--shadow-soft);
+}
+
+.scratch-secret {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, #fff, #ffe5ec);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    transform: scale(0.8);
+    opacity: 0.5;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.scratch-secret.pop-gift {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: inset 0 0 30px #ffb3c6;
+}
+
+.scratch-secret h3 {
+    font-family: 'Titan One';
+    color: var(--main-pink);
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+}
+
+.scratch-secret p {
+    font-family: 'Poppins';
+    font-size: 1rem;
+    color: #555;
+    font-weight: bold;
+}
+
+#scratch-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="gold" stroke="darkgoldenrod" stroke-width="2"/></svg>') 16 16, crosshair;
+}
+
+.mt-3 {
+    margin-top: 15px;
+}
+
+#copy {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    padding: 20px 0 30px;
+    z-index: 10;
+}
+
+#copy p {
+    font-size: 12px;
+    color: #999;
+    font-weight: 500;
+}
+
+#copy a {
+    color: var(--main-pink);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* PC VIEW */
+@media screen and (min-width: 769px) {
+    .content {
+        flex-direction: row;
+        gap: 50px;
+        padding-top: 40px;
+    }
+
+    .left,
+    .right {
+        width: 50%;
+    }
+
+    .left {
+        align-items: flex-start;
+        padding-left: 20px;
+    }
+
+    .title {
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .title .hat {
+        right: -60px;
+        top: -50px;
+        width: 110px;
+    }
+
+    .date__of__birth {
+        align-self: flex-start;
+    }
+
+    .btn {
+        align-self: flex-start;
+    }
+
+    .extra-actions {
+        justify-content: flex-start;
+        width: 100%;
+    }
+
+    .image {
+        width: 350px;
+        height: 350px;
+    }
+
+    .cricle {
+        right: 20px;
+        top: 10px;
+    }
+}
+
+/* MOBILE VIEW */
+@media screen and (max-width: 768px) {
+    .content {
+        flex-direction: column;
+        padding-top: 5px;
+        gap: 40px;
+        padding-bottom: 80px;
+    }
+
+    .flag__left {
+        width: 150px;
+        top: -20px;
+        left: -20px;
+        position: relative;
+    }
+
+    .flag__right {
+        width: 150px;
+        top: -20px;
+        right: -20px;
+        position: relative;
+    }
+
+    .text-row {
+        font-size: clamp(3rem, 14vw, 4.5rem);
+    }
+
+    .title .hat {
+        right: -5%;
+        top: -35%;
+    }
+
+    .date__of__birth {
+        padding: 8px 25px;
+        margin-top: 15px;
+    }
+
+    .btn {
+        margin-top: 20px;
+    }
+
+    .shimmer-btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+
+    .extra-actions {
+        gap: 20px;
+    }
+
+    .image {
+        width: 65vw;
+        height: 65vw;
+    }
+
+    .name {
+        top: -15px;
+        font-size: 1.1rem;
+        padding: 8px 25px;
+    }
+
+    .cricle {
+        right: -5px;
+        top: -5px;
+    }
+
+    .content__letter {
+        flex-direction: column;
+    }
+
+    .content__letter .left {
+        display: none;
+    }
+
+    .content__letter .right {
+        width: 100%;
+    }
+
+    .text__letter p {
+        font-size: 1.15rem;
+        text-align: justify;
+    }
+
+    .love__img {
+        position: relative;
+        display: block;
+        margin: -10px auto 10px;
+        width: 120px;
+        right: auto;
+        bottom: auto;
+        z-index: 5;
+    }
+
+    .love__img img {
+        width: 100%;
+        filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.1));
+    }
+}
+
+/* ==================================
+   DEX SECTION & PHOTO GALLERY
+   ================================== */
+
+/* --- Dex Section Container --- */
+#dex-section {
+    width: 100%;
+    padding: 50px 20px 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, var(--bg-pink) 0%, #ffe0ec 50%, var(--bg-pink) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+#dex-section::before,
+#dex-section::after {
+    content: "🌸";
+    position: absolute;
+    font-size: 4rem;
+    opacity: 0.12;
+    animation: floatBox 5s ease-in-out infinite;
+}
+
+#dex-section::before {
+    top: 10px;
+    left: 20px;
+}
+
+#dex-section::after {
+    bottom: 10px;
+    right: 20px;
+    animation-delay: 2.5s;
+}
+
+.dex-section-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.dex-section-title {
+    font-family: 'Titan One', cursive;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    color: var(--main-pink);
+    text-shadow: 3px 3px 0 #ffb3c6;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dex-flower-icon {
+    animation: floatBox 3s ease-in-out infinite;
+    display: inline-block;
+}
+
+.dex-section-sub {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.3rem;
+    color: var(--light-pink);
+    margin-bottom: 10px;
+}
+
+/* --- Dex Card Trigger --- */
+.dex-card-trigger {
+    cursor: pointer;
+    perspective: 800px;
+}
+
+.dex-card-inner {
+    width: 220px;
+    height: 140px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #fff0f5, #ffe0ec);
+    border: 3px solid var(--white);
+    box-shadow: 0 8px 0 #ffb3c6, 0 15px 30px rgba(255, 71, 126, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.dex-card-inner::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5), transparent);
+    transform: skewX(-20deg);
+    animation: shimmer 2.5s infinite;
+}
+
+.dex-card-trigger:hover .dex-card-inner {
+    transform: translateY(-8px) rotateX(5deg);
+    box-shadow: 0 14px 0 #ffb3c6, 0 25px 40px rgba(255, 71, 126, 0.3);
+}
+
+.dex-card-trigger:active .dex-card-inner {
+    transform: translateY(4px);
+    box-shadow: 0 4px 0 #ffb3c6;
+}
+
+.dex-card-petals {
+    display: flex;
+    gap: 4px;
+    font-size: 1.2rem;
+    animation: floatBox 3s ease-in-out infinite;
+}
+
+.dex-card-label {
+    font-family: 'Titan One', cursive;
+    font-size: 1.6rem;
+    color: var(--main-pink);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dex-card-label i {
+    font-size: 1rem;
+    animation: heartBeat 1s infinite;
+}
+
+.dex-card-hint {
+    font-family: 'Poppins';
+    font-size: 0.8rem;
+    color: var(--light-pink);
+    font-weight: 600;
+}
+
+/* --- Dex Modal --- */
+.dex-modal-border {
+    width: 92%;
+    max-width: 500px;
+    text-align: center;
+    min-height: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.dex-modal-title {
+    font-family: 'Caveat', cursive;
+    font-size: 2rem;
+    color: var(--main-pink);
+    text-shadow: 2px 2px 0 #fff;
+}
+
+/* --- Flower Bloom Animation --- */
+.flower-bloom-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 220px;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.flower-stem-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flower-stem {
+    width: 6px;
+    height: 0;
+    background: linear-gradient(to top, #7bc47f, #a8e6cf);
+    border-radius: 3px;
+    box-shadow: 0 0 8px rgba(123, 196, 127, 0.4);
+}
+
+.flower-leaves {
+    position: absolute;
+    bottom: 10px;
+    width: 70px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.flower-leaf {
+    width: 28px;
+    height: 16px;
+    background: linear-gradient(135deg, #7bc47f, #a8e6cf);
+    border-radius: 50% 0 50% 0;
+    opacity: 0;
+    transform: scale(0);
+}
+
+.leaf-right {
+    transform: scale(0) scaleX(-1);
+    border-radius: 0 50% 0 50%;
+}
+
+.flower-head {
+    position: absolute;
+    top: -70px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    opacity: 0;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flower-petal {
+    position: absolute;
+    width: 22px;
+    height: 38px;
+    background: radial-gradient(ellipse at bottom, #ffb3c6, var(--main-pink));
+    border-radius: 50% 50% 20% 20%;
+    transform-origin: bottom center;
+    transform: rotate(var(--pr)) translateY(0) scale(0);
+    opacity: 0;
+    box-shadow: 0 0 6px rgba(255, 71, 126, 0.3);
+}
+
+.flower-center {
+    position: relative;
+    z-index: 5;
+    font-size: 1.4rem;
+    filter: drop-shadow(0 0 4px rgba(255, 200, 0, 0.6));
+}
+
+/* --- Slideshow --- */
+.dex-slideshow {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+.dex-slide-frame {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+}
+
+.dex-photo-wrapper {
+    width: 100%;
+    max-width: 320px;
+    height: 240px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 5px solid var(--white);
+    box-shadow: 0 8px 0 #ffb3c6, 0 15px 30px rgba(255, 71, 126, 0.25);
+    position: relative;
+}
+
+.dex-photo-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.dex-photo-wrapper:hover img {
+    transform: scale(1.04);
+}
+
+.dex-photo-overlay {
+    position: absolute;
+    bottom: 10px;
+    right: 12px;
+    background: rgba(255, 71, 126, 0.85);
+    color: white;
+    font-family: 'Poppins';
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+}
+
+/* Slide transitions */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.slide-in-right {
+    animation: slideInRight 0.4s ease forwards;
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.4s ease forwards;
+}
+
+.slide-out-right {
+    animation: slideOutRight 0.4s ease forwards;
+}
+
+.slide-out-left {
+    animation: slideOutLeft 0.4s ease forwards;
+}
+
+@keyframes slideOutRight {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+}
+
+@keyframes slideOutLeft {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+}
+
+/* Falling petals */
+.dex-slide-petals {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.falling-petal {
+    position: absolute;
+    top: -20px;
+    animation: petalFall 2.5s ease-in forwards;
+}
+
+@keyframes petalFall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(280px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Nav controls */
+.dex-slide-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.dex-nav-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--white);
+    color: var(--main-pink);
+    border: 3px solid var(--main-pink);
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #ffb3c6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.dex-nav-btn:hover {
+    transform: translateY(-4px);
+    background: var(--light-pink);
+    color: white;
+}
+
+.dex-nav-btn:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 #ffb3c6;
+}
+
+.dex-dots {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 180px;
+}
+
+.dex-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ffb3c6;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dex-dot.active {
+    background: var(--main-pink);
+    transform: scale(1.4);
+}
+
+/* Auto progress bar */
+.dex-auto-bar-wrap {
+    width: 100%;
+    max-width: 320px;
+    height: 5px;
+    background: #ffb3c6;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.dex-auto-bar {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(to right, var(--main-pink), var(--light-pink));
+    border-radius: 10px;
+}
+
+.dex-caption {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.1rem;
+    color: var(--main-pink);
+    text-align: center;
+    max-width: 300px;
+    min-height: 2em;
+}
+
+/* Mobile adjustments for dex */
+@media screen and (max-width: 768px) {
+    .dex-photo-wrapper {
+        height: 200px;
+    }
+
+    .dex-dots {
+        max-width: 140px;
+        gap: 5px;
+    }
+
+    .dex-dot {
+        width: 7px;
+        height: 7px;
+    }
+}
+
+/* ==================================
+   DEX CIRCLE BUTTON (below cake/gift)
+   ================================== */
+.extra-actions-dex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-top: 20px;
+    animation-delay: 5.5s;
+}
+
+.dex-icon-btn {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #ff477e, #ff85a1) !important;
+    color: white !important;
+    border-color: white !important;
+    box-shadow: 0 8px 0 #ffb3c6, 0 0 20px rgba(255, 71, 126, 0.4) !important;
+    animation: pulseGlow 2s infinite ease-in-out;
+}
+
+.dex-icon-btn:hover {
+    transform: translateY(-6px) scale(1.1) !important;
+    box-shadow: 0 14px 0 #ffb3c6, 0 0 30px rgba(255, 71, 126, 0.6) !important;
+}
+
+@keyframes pulseGlow {
+
+    0%,
+    100% {
+        box-shadow: 0 8px 0 #ffb3c6, 0 0 15px rgba(255, 71, 126, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 8px 0 #ffb3c6, 0 0 30px rgba(255, 71, 126, 0.7);
+    }
+}
+
+.dex-btn-label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--main-pink);
+}
+
+/* ==================================
+   DEX MODAL — FLOWER THEME
+   ================================== */
+.dex-modal-overlay {
+    background: radial-gradient(ellipse at center, rgba(255, 224, 236, 0.95) 0%, rgba(255, 240, 245, 0.97) 100%) !important;
+}
+
+/* Floating background flower emojis */
+.dex-bg-flowers {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.dbf {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    font-size: var(--s);
+    animation: dbfFloat 4s var(--d) ease-in-out infinite;
+    opacity: 0.25;
+}
+
+@keyframes dbfFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(-8deg);
+        opacity: 0.2;
+    }
+
+    50% {
+        transform: translateY(-18px) rotate(8deg);
+        opacity: 0.4;
+    }
+}
+
+/* Dex modal card — wider, taller */
+.dex-modal-border {
+    position: relative;
+    z-index: 1;
+    width: 94%;
+    max-width: 520px;
+    background: linear-gradient(145deg, #fff5f8, #ffffff, #fff0f8) !important;
+    border: 4px solid var(--main-pink) !important;
+    box-shadow: 0 0 0 6px rgba(255, 71, 126, 0.12), 0 30px 60px rgba(255, 71, 126, 0.25) !important;
+    text-align: center;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+/* Corner flower decorators */
+.dex-corner-flower {
+    position: absolute;
+    font-size: 1.6rem;
+    animation: floatBox 3s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.dex-corner-flower.tl {
+    top: 8px;
+    left: 10px;
+    animation-delay: 0s;
+}
+
+.dex-corner-flower.tr {
+    top: 8px;
+    right: 10px;
+    animation-delay: 0.5s;
+}
+
+.dex-corner-flower.bl {
+    bottom: 8px;
+    left: 10px;
+    animation-delay: 1s;
+}
+
+.dex-corner-flower.br {
+    bottom: 8px;
+    right: 10px;
+    animation-delay: 1.5s;
+}
+
+/* Modal title */
+.dex-modal-title {
+    font-family: 'Caveat', cursive;
+    font-size: 2.2rem;
+    color: var(--main-pink);
+    text-shadow: 2px 2px 0 #fff, 3px 3px 0 #ffb3c6;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.dex-title-flower {
+    display: inline-block;
+    font-size: 1.8rem;
+    animation: floatBox 2s ease-in-out infinite;
+}
+
+/* ==================================
+   CIRCULAR VOICE MESSAGE BUTTON
+   ================================== */
+.voice-icon-btn {
+    position: relative;
+}
+
+.voice-icon-btn.playing {
+    background: var(--main-pink) !important;
+    color: var(--white) !important;
+    border-color: var(--white) !important;
+    box-shadow: 0 0 20px rgba(255, 71, 126, 0.6) !important;
+}
+
+.voice-icon-btn.playing i {
+    animation: pulseIcon 1.2s infinite alternate ease-in-out;
+}
+
+@keyframes pulseIcon {
+    0% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1.25);
+    }
+}
+
+/* Pulse ring animation */
+.voice-icon-btn.playing::after {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 2px solid var(--main-pink);
+    animation: voicePulse 1.6s infinite ease-out;
+    opacity: 0;
+    pointer-events: none;
+}
+
+@keyframes voicePulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1.4);
+        opacity: 0;
+    }
+}
