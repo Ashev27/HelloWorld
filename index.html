@@ -31,6 +31,8 @@
 
     <!-- Pre-recorded Voice / Audio -->
     <audio id="recorded-audio">
+        <source src="audio/recorded.m4a" type="audio/mp4">
+        <source src="recorded.m4a" type="audio/mp4">
         <source src="audio/recorded.mp3" type="audio/mpeg">
         <source src="recorded.mp3" type="audio/mpeg">
     </audio>
@@ -344,7 +346,7 @@
                 bgAudio.pause();
                 recAudio.play().catch(err => {
                     console.log("Playback failed: ", err);
-                    alert("To hear your voice message, please place your recording as 'recorded.mp3' in the 'audio' folder!");
+                    alert("To hear your voice message, please place your recording as 'recorded.mp3' or 'recorded.m4a' in the 'audio' folder!");
                 });
             } else {
                 recAudio.pause();
